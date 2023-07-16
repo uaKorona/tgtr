@@ -12,7 +12,7 @@ import { ServerFeatureGameService } from './server-feature-game.service';
 import { IGame } from '@shared/domain';
 import { CreateGameDto, UpdateGameDto, UpsertGameDto } from './dtos/game.dto';
 
-@Controller('server-feature-game')
+@Controller({ path: 'games' })
 export class ServerFeatureGameController {
   constructor(private serverFeatureGameService: ServerFeatureGameService) {}
 

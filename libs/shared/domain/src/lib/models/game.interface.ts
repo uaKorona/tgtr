@@ -7,3 +7,7 @@ export interface IGame {
   // roads: Record<keyof typeof ROADS, Road>
   // battlefields: Record<keyof typeof BATTLEFIELDS, Battlefield>
 }
+
+export type ICreateGame = Pick<IGame, 'playerDarkName' | 'playerLightName'>;
+export type IUpdateTodo = Partial<Omit<IGame, 'id'>>;
+export type IUpsertTodo = IGame;

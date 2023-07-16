@@ -1,9 +1,7 @@
 import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
-import { IGame } from '@shared/domain';
+import { ICreateGame, IGame, IUpdateTodo, IUpsertTodo } from '@shared/domain';
 
-export class CreateGameDto
-  implements Pick<IGame, 'playerDarkName' | 'playerLightName'>
-{
+export class CreateGameDto implements ICreateGame {
   @IsString()
   @IsNotEmpty()
   playerDarkName!: string;
@@ -13,7 +11,7 @@ export class CreateGameDto
   playerLightName!: string;
 }
 
-export class UpsertGameDto implements IGame {
+export class UpsertGameDto implements IUpsertTodo {
   @IsString()
   @IsNotEmpty()
   playerDarkName!: string;
@@ -35,7 +33,7 @@ export class UpsertGameDto implements IGame {
   roads!: Record<string, unknown>;
 }
 
-export class UpdateGameDto implements Partial<Omit<IGame, 'id'>> {
+export class UpdateGameDto implements IUpdateTodo {
   @IsString()
   @IsOptional()
   playerDarkName!: string;
