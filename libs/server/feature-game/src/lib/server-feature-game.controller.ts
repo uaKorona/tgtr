@@ -10,24 +10,38 @@ import {
 } from '@nestjs/common';
 import { ServerFeatureGameService } from './server-feature-game.service';
 import { IGame } from '@shared/domain';
-import { CreateGameDto, UpdateGameDto, UpsertGameDto } from './dtos/game.dto';
+import {
+  CreateGameDto,
+  GameDto,
+  UpdateGameDto,
+  UpsertGameDto,
+} from './dtos/game.dto';
+import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller({ path: 'games' })
 export class ServerFeatureGameController {
   constructor(private serverFeatureGameService: ServerFeatureGameService) {}
 
   @Get('')
-  getAll(): Promise<IGame[]> {
+  @ApiOkResponse({
+    type: GameDto,
+    isArray: true,
+  })
+  @ApiOperation({
+    summary: 'Returns all games',
+    tags: ['games'],
+  })
+  async getAll(): Promise<IGame[]> {
     return this.serverFeatureGameService.getAll();
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): Promise<IGame> {
+  async getOne(@Param('id') id: string): Promise<IGame> {
     return this.serverFeatureGameService.getOne(id);
   }
 
   @Post('')
-  create(@Body() data: CreateGameDto): Promise<IGame> {
+  async create(@Body() data: CreateGameDto): Promise<IGame> {
     return this.serverFeatureGameService.create(data);
   }
 
