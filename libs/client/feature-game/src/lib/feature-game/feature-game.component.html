@@ -1,5 +1,9 @@
 <p>feature-game works!</p>
 
+<p>
+  <button (click)="addGame()">Add Game</button>
+</p>
+
 <ul>
   <li *ngFor="let game of games$ | async; let i = index">
     {{ i }}. {{ game.playerDarkName }} VS {{ game.playerLightName }}

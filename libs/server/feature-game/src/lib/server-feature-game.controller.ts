@@ -17,17 +17,17 @@ export class ServerFeatureGameController {
   constructor(private serverFeatureGameService: ServerFeatureGameService) {}
 
   @Get('')
-  getAll(): IGame[] {
+  getAll(): Promise<IGame[]> {
     return this.serverFeatureGameService.getAll();
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): IGame {
+  getOne(@Param('id') id: string): Promise<IGame> {
     return this.serverFeatureGameService.getOne(id);
   }
 
   @Post('')
-  create(@Body() data: CreateGameDto): IGame {
+  create(@Body() data: CreateGameDto): Promise<IGame> {
     return this.serverFeatureGameService.create(data);
   }
 

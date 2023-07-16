@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
-import { ICreateGame, IGame, IUpdateTodo, IUpsertTodo } from '@shared/domain';
+import { ICreateGame, IUpdateTodo, IUpsertTodo } from '@shared/domain';
 
 export class CreateGameDto implements ICreateGame {
   @IsString()

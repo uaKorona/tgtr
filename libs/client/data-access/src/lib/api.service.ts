@@ -19,8 +19,8 @@ export class ApiService {
     return this.http.get<IGame>(this.baseUrlById(todoId));
   }
 
-  createGame(todoData: ICreateGame): Observable<IGame> {
-    return this.http.post<IGame>(this.baseUrl, todoData);
+  createGame(game: ICreateGame): Observable<IGame> {
+    return this.http.post<IGame>(this.baseUrl, game);
   }
 
   updateGame(todoId: string, todoData: unknown): Observable<IGame> {

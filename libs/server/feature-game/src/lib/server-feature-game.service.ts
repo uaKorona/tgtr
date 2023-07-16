@@ -1,9 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { BehaviorSubject } from 'rxjs';
 import { IGame } from '@shared/domain';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { GameEntitySchema } from '@server/data-access-game';
 
 @Injectable()
 export class ServerFeatureGameService {
+  constructor(
+    @InjectRepository(GameEntitySchema)
+    private gameRepository: Repository<IGame>
+  ) {}
+
   private game$$ = new BehaviorSubject<IGame[]>([
     {
       id: 'new',
@@ -14,30 +22,28 @@ export class ServerFeatureGameService {
     },
   ]);
 
-  getAll(): IGame[] {
-    return this.game$$.value;
+  async getAll(): Promise<IGame[]> {
+    return this.gameRepository.find();
   }
 
-  getOne(id: string): IGame {
-    const game = this.game$$.value.find((td) => td.id === id);
+  async getOne(id: string): Promise<IGame> {
+    const todo = await this.gameRepository.findOneBy({ id });
 
-    if (!game) {
-      throw new NotFoundException(`Todo could not be found!`);
+    if (!todo) {
+      throw new NotFoundException(`A game ${id} could not be found!`);
     }
 
-    return game;
+    return todo;
   }
 
-  create(game: Pick<IGame, 'playerLightName' | 'playerDarkName'>): IGame {
-    const current = this.game$$.value;
-    // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
-    const newGame: IGame = {
-      ...game,
-      id: `game-${Date.now()}`,
+  async create(
+    todo: Pick<IGame, 'playerLightName' | 'playerDarkName'>
+  ): Promise<IGame> {
+    const newGame: IGame = await this.gameRepository.save({
+      ...todo,
       roads: {},
       battlefields: {},
-    };
-    this.game$$.next([...current, newGame]);
+    });
 
     return newGame;
   }
