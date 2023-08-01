@@ -56,7 +56,7 @@ export class ServerFeatureGameController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string): void {
+  async delete(@Param('id') id: string): Promise<void> {
     return this.serverFeatureGameService.delete(id);
   }
 }

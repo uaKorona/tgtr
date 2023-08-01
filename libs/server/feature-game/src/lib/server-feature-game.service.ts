@@ -80,14 +80,14 @@ export class ServerFeatureGameService {
     return updated;
   }
 
-  delete(id: string): void {
-    const todo = this.game$$.value.find((td) => td.id === id);
+  async delete(id: string): Promise<void> {
+    const game = await this.gameRepository.findOneBy({ id });
 
-    if (!todo) {
-      throw new NotFoundException(`Game could not be found!`);
+    if (!game) {
+      throw new NotFoundException(`Game could not be found and deleted!`);
     }
 
-    this.game$$.next([...this.game$$.value.filter((td) => td.id !== id)]);
+    await this.gameRepository.delete(id);
     return;
   }
 }

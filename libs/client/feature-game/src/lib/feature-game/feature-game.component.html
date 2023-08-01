@@ -5,7 +5,7 @@
 </p>
 
 <ul>
-  <li *ngFor="let game of games$ | async; let i = index">
-    {{ i }}. {{ game.playerDarkName }} VS {{ game.playerLightName }}
+  <li *ngFor="let game of games$ | async; trackBy: trackTodo">
+    <tgtr-game [game]="game" (cancelGame)="deleteGame($event)"></tgtr-game>
   </li>
 </ul>
