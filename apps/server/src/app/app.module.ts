@@ -6,6 +6,7 @@ import { ServerFeatureGameModule } from '@server/feature-game';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Joi from 'joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServerFeatureHealthModule } from '@server/feature-health';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [ConfigService],
     }),
     ServerFeatureGameModule,
+    ServerFeatureHealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

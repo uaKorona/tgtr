@@ -20,7 +20,9 @@
       "@client/ui-components": ["libs/client/ui-components/src/index.ts"],
       "@server/data-access-game": ["libs/server/data-access-game/src/index.ts"],
       "@server/feature-game": ["libs/server/feature-game/src/index.ts"],
+      "@server/feature-health": ["libs/server/feature-health/src/index.ts"],
       "@shared/domain": ["libs/shared/domain/src/index.ts"],
+      "@shared/util-env": ["libs/shared/util-env/src/index.ts"],
       "@tgtr/client/ui-style": ["libs/client/ui-style/src/index.ts"]
     }
   },

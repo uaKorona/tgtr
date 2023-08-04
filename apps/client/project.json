@@ -38,6 +38,27 @@
           ],
           "outputHashing": "all"
         },
+        "render": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "libs/shared/util-env/src/lib/environment.ts",
+              "with": "libs/shared/util-env/src/lib/environment.render.ts"
+            }
+          ]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
@@ -54,6 +75,9 @@
       "configurations": {
         "production": {
           "browserTarget": "client:build:production"
+        },
+        "render": {
+          "browserTarget": "client:build:render"
         },
         "development": {
           "browserTarget": "client:build:development"

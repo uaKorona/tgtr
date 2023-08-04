@@ -21,6 +21,11 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
+  // TODO - revisit and secure this!
+  app.enableCors({
+    origin: '*',
+  });
+
   // set up versioning
   app.enableVersioning({
     type: VersioningType.URI,
