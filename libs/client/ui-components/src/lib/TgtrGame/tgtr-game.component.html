@@ -1,0 +1,20 @@
+<p>tgtr-game works!</p>
+
+<ul *ngIf="game">
+  <fa-icon [icon]="faCoffee"></fa-icon>
+  <li>ID: {{ game.id }}</li>
+  <li>ROADS: {{ game.roads | json }}</li>
+  <li>BATTLEFIELDS: {{ game.battlefields | json }}</li>
+  <li>{{ game.playerDarkName }} vs {{ game.playerLightName }}</li>
+</ul>
+
+<div class="game__footer">
+  <div class="game__actions">
+    <button class="btn btn--primary" (click)="startGameClick()">
+      <fa-icon [icon]="faPencil"></fa-icon>
+    </button>
+    <button class="btn btn--danger" (click)="cancelGameClick()">
+      <fa-icon [icon]="faTrashCan"></fa-icon>
+    </button>
+  </div>
+</div>
