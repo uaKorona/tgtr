@@ -94,17 +94,17 @@ export class UpsertGameDto implements IUpsertTodo {
 export class UpdateGameDto implements IUpdateTodo {
   @IsString()
   @IsOptional()
-  playerDarkName!: string;
+  playerDarkName?: string;
 
   @IsString()
   @IsOptional()
-  playerLightName!: string;
+  playerLightName?: string;
 
   @IsObject()
   @IsOptional()
-  battlefields!: Record<string, unknown>;
+  battlefields?: Record<string, unknown>;
 
   @IsObject()
   @IsOptional()
-  roads!: Record<string, unknown>;
+  roads?: Record<string, unknown>;
 }

@@ -48,17 +48,14 @@ export class ServerFeatureGameService {
     return newGame;
   }
 
-  update(id: string, data: Partial<Omit<IGame, 'id'>>): IGame {
-    const game = this.game$$.value.find((td) => td.id === id);
+  async update(id: string, data: Partial<Omit<IGame, 'id'>>): Promise<IGame> {
+    await this.gameRepository.save({
+      id,
+      ...data,
+    });
 
-    if (!game) {
-      throw new NotFoundException(`Game could not be found!`);
-    }
-
-    const updated = { ...game, ...data };
-    this.game$$.next([
-      ...this.game$$.value.map((td) => (td.id === id ? updated : td)),
-    ]);
+    // re-query the database so that the updated record is returned
+    const updated = await this.gameRepository.findOneOrFail({ where: { id } });
 
     return updated;
   }

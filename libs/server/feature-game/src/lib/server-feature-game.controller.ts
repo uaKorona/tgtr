@@ -51,7 +51,10 @@ export class ServerFeatureGameController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() data: UpdateGameDto): IGame {
+  async update(
+    @Param('id') id: string,
+    @Body() data: UpdateGameDto
+  ): Promise<IGame> {
     return this.serverFeatureGameService.update(id, data);
   }
 
