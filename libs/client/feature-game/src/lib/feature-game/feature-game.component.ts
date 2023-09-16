@@ -21,7 +21,6 @@ import { BehaviorSubject, take } from 'rxjs';
 })
 export class FeatureGameComponent implements OnInit {
   private readonly apiService = inject(ApiService);
-  private readonly cdr = inject(ChangeDetectorRef);
 
   games$ = new BehaviorSubject<IGame[]>([]);
 
