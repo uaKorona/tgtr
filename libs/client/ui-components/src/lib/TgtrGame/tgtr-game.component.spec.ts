@@ -46,7 +46,6 @@ describe('TgtrGameComponent', () => {
     // run our component's initialization logic to set up the
     // component.onInit() lifecycle hook
 
-
     // call the same method tied to a button press in the template
     // this will trigger the EventEmitter which is detected and
     // processed a few lines above
