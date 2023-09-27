@@ -8,10 +8,11 @@
     "lint-all": "nx run-many --target=lint --all",
     "lint-affected": "nx affected --target=lint --parallel",
     "test-affected": "nx affected --target=test --parallel",
+    "format-affected": "nx affected --target=format --parallel",
     "dep-graph": "nx dep-graph",
     "story-book": "npx nx run client-ui-components:storybook",
     "prepare": "husky install",
-    "pre-test": "npm run lint-affected && npm run test-affected"
+    "pre-test": "npm run lint-affected && npm run test-affected && npm run format-affected"
   },
   "private": true,
   "dependencies": {
