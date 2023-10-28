@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { IGame } from '@shared/domain';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { GameEntitySchema } from '@server/data-access-game';
+import { GameEntitySchema } from '@server/data-access';
 
 @Injectable()
 export class ServerFeatureGameService {

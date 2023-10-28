@@ -4,28 +4,16 @@ import {
   ServerFeatureGameService,
 } from '@server/feature-game';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { GameEntitySchema } from '@server/data-access-game';
+import { GameEntitySchema } from '@server/data-access';
 import { Repository } from 'typeorm';
 import { APP_PIPE } from '@nestjs/core';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { IGame } from '@shared/domain';
-import { createMockGame } from '@shared/util-testing';
+import { createMockGame, createMockUser } from '@shared/util-testing';
 import * as request from 'supertest';
+import { MockType, repositoryMockFactory } from '@server/util';
 
-export type MockType<T> = {
-  [P in keyof T]?: jest.Mock<unknown>;
-};
-
-export const repositoryMockFactory: () => MockType<Repository<any>> = jest.fn(
-  () => ({
-    findOne: jest.fn((entity) => entity),
-    findOneBy: jest.fn(() => ({})),
-    save: jest.fn((entity) => entity),
-    findOneOrFail: jest.fn(() => ({})),
-    delete: jest.fn(() => null),
-    find: jest.fn((entities) => entities),
-  })
-);
+const mockUser = createMockUser();
 
 describe('ServerFeatureGameController E2E', () => {
   const gamesUrl = `/games`;
@@ -65,7 +53,7 @@ describe('ServerFeatureGameController E2E', () => {
 
   it('should create a game item', () => {
     // utilize the same, shared utility for creating a fake game item
-    const { id, playerDarkName, playerLightName } = createMockGame();
+    const { id, playerDarkName, playerLightName } = createMockGame(mockUser.id);
 
     // eventually we'll use an actual database in these tests, but
     // for now we're still mocking that layer

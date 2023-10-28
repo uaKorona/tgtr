@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TgtrGameComponent } from './tgtr-game.component';
-import { createMockGame } from '@shared/util-testing';
+import { createMockGame, createMockUser } from '@shared/util-testing';
+
+const mockUser = createMockUser();
 
 describe('TgtrGameComponent', () => {
   let component: TgtrGameComponent;
@@ -22,7 +24,7 @@ describe('TgtrGameComponent', () => {
 
   // in the outer function, a 'done' callback function is added as a parameter, so we can manually tell Jest when we've completed the test
   it('should successfully start a game', (done) => {
-    const game = createMockGame();
+    const game = createMockGame(mockUser.id);
 
     // `startGame` is the EventEmitter that parent components will
     // bind to in a template. Our goal is to monitor the output

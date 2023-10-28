@@ -1,10 +1,10 @@
 import { Test } from '@nestjs/testing';
 import { ServerFeatureGameController } from './server-feature-game.controller';
 import { ServerFeatureGameService } from './server-feature-game.service';
-import { GameEntitySchema } from '@server/data-access-game';
+import { GameEntitySchema } from '@server/data-access';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { createMockGame } from '@shared/util-testing';
+import { createMockGame, createMockUser } from '@shared/util-testing';
 
 export type MockType<T> = {
   [P in keyof T]?: jest.Mock<unknown>;
@@ -20,6 +20,8 @@ export const repositoryMockFactory: () => MockType<Repository<any>> = jest.fn(
     find: jest.fn((entities) => entities),
   })
 );
+
+const mockUser = createMockUser();
 
 describe('ServerFeatureGameController', () => {
   let controller: ServerFeatureGameController;
@@ -51,7 +53,7 @@ describe('ServerFeatureGameController', () => {
     // array of 5 to-do items
     jest.spyOn(service, 'getAll').mockReturnValue(
       new Promise((res, rej) => {
-        res(Array.from({ length: 5 }).map(() => createMockGame()));
+        res(Array.from({ length: 5 }).map(() => createMockGame(mockUser.id)));
       })
     );
 
@@ -71,7 +73,7 @@ describe('ServerFeatureGameController', () => {
   // testing the method associated with a PATCH HTTP request
   it('should allow updates to a single game', async () => {
     // generate a random game item
-    const game = createMockGame();
+    const game = createMockGame(mockUser.id);
 
     // create a variable for the property being changed
     // (just makes it easier to reference, instead of risking
