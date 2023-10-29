@@ -4,8 +4,10 @@ import { ApiService } from './api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { IGame } from '@shared/domain';
-import { createMockGame } from '@shared/util-testing';
+import { createMockGame, createMockUser } from '@shared/util-testing';
 import { of } from 'rxjs';
+
+const mockUser = createMockUser();
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -33,7 +35,7 @@ describe('ApiService', () => {
    */
   it('should get a list of games items', (done) => {
     const games: IGame[] = Array.from({ length: 5 }).map(() =>
-      createMockGame()
+      createMockGame(mockUser.id)
     );
 
     /**
