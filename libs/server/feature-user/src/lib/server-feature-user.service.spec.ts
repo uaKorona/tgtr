@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { ServerFeatureUserService } from './server-feature-user.service';
 import { IUser } from '@shared/domain';
 import { Repository } from 'typeorm';
-import { MockType, repositoryMockFactory } from '@server/util';
+import { MockType, repositoryMockFactory } from '@server/util/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserEntitySchema } from '@server/data-access';
 

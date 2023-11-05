@@ -24,6 +24,7 @@
       "@server/feature-health": ["libs/server/feature-health/src/index.ts"],
       "@server/feature-user": ["libs/server/feature-user/src/index.ts"],
       "@server/util": ["libs/server/util/src/index.ts"],
+      "@server/util/testing": ["libs/server/util/src/lib/testing/index.ts"],
       "@shared/domain": ["libs/shared/domain/src/index.ts"],
       "@shared/util-env": ["libs/shared/util-env/src/index.ts"],
       "@shared/util-testing": ["libs/shared/util-testing/src/index.ts"],
