@@ -1,8 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { UserEntitySchema } from "@server/data-access";
-import { Repository } from "typeorm";
-import { ICreateUser, IUser } from "@shared/domain";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntitySchema } from '@server/data-access';
+import { Repository } from 'typeorm';
+import { ICreateUser, IUser } from '@shared/domain';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

@@ -12,7 +12,12 @@ import { ServerFeatureGameService } from './server-feature-game.service';
 import { IGame } from '@shared/domain';
 
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { CreateGameDto, GameDto, UpdateGameDto, UpsertGameDto } from "@server/data-access";
+import {
+  CreateGameDto,
+  GameDto,
+  UpdateGameDto,
+  UpsertGameDto,
+} from '@server/data-access';
 
 @Controller({ path: 'games' })
 export class ServerFeatureGameController {
