@@ -1,7 +1,13 @@
-import { ICreateUser, IGame, IPublicUserData } from "@shared/domain";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsEmail, IsNotEmpty, IsString, IsStrongPassword } from "class-validator";
-import { GameDto } from "./game.dto";
+import { ICreateUser, IGame, IPublicUserData } from '@shared/domain';
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsArray,
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
+import { GameDto } from './game.dto';
 
 export class UserResponseDto implements IPublicUserData {
   @ApiProperty({

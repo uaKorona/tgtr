@@ -1,7 +1,10 @@
 import { IGame } from '@shared/domain';
 import { randFirstName, randProduct, randUuid } from '@ngneat/falso';
 
-export const createMockGame = (user_id: string, data?: Partial<IGame>): IGame => {
+export const createMockGame = (
+  user_id: string,
+  data?: Partial<IGame>
+): IGame => {
   const game = {
     id: randUuid(),
     roads: {},

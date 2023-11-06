@@ -11,8 +11,7 @@ import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { IGame } from '@shared/domain';
 import { createMockGame, createMockUser } from '@shared/util-testing';
 import * as request from 'supertest';
-import { MockType, repositoryMockFactory } from '@server/util';
-
+import { MockType, repositoryMockFactory } from '@server/util/testing';
 const mockUser = createMockUser();
 
 describe('ServerFeatureGameController E2E', () => {

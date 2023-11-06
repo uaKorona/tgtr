@@ -1,5 +1,4 @@
-import { IGame } from "./game.interface";
-
+import { IGame } from './game.interface';
 
 export interface IUser {
   /** Randomly generated primary key (UUID) by the database */

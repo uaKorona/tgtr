@@ -50,6 +50,15 @@ describe('ServerFeatureAuthController', () => {
     expect(controller).toBeTruthy();
   });
 
+  it('should login a user', async () => {
+    const res = await controller.login({
+      email: mockUser.email,
+      password: mockUserUnhashedPassword,
+    });
+    expect(res.access_token).toBeDefined();
+    expect(typeof res.access_token).toBe('string');
+  });
+
   /* it('should login a user', async () => {
     const res = await controller.login({
       email: mockUser.email,
