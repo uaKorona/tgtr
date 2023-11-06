@@ -3,3 +3,5 @@
 /coverage
 .angular
 .idea
+README.md
+*.json
