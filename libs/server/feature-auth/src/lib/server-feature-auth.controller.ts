@@ -3,6 +3,7 @@ import { ServerFeatureAuthService } from './server-feature-auth.service';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { LoginRequestDto, LoginResponseDto } from '@server/data-access';
 import { ITokenResponse } from '@shared/domain';
+import { SkipAuth } from '@server/util';
 
 @Controller({ path: 'auth', version: '1' })
 @ApiTags('Authentication')
@@ -10,6 +11,7 @@ export class ServerFeatureAuthController {
   constructor(private serverFeatureAuthService: ServerFeatureAuthService) {}
 
   @Get('login')
+  @SkipAuth()
   @ApiOkResponse({
     type: LoginResponseDto,
   })

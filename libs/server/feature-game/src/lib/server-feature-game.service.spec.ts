@@ -48,7 +48,7 @@ describe('ServerFeatureGameService', () => {
 
     // make sure the service is responding with the array of
     // fake game items
-    expect((await service.getAll()).length).toBe(games.length);
+    expect((await service.getAll(mockUser.id)).length).toBe(games.length);
 
     // because we're using jest.fn() for our mock database repository
     // methods, we can spy on `find()` and ensure that it was called
