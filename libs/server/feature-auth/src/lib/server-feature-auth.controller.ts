@@ -7,6 +7,8 @@ import { SkipAuth } from '@server/util';
 
 @Controller({ path: 'auth', version: '1' })
 @ApiTags('Authentication')
+@Controller({ path: 'auth', version: '1' })
+@ApiTags('Authentication')
 export class ServerFeatureAuthController {
   constructor(private serverFeatureAuthService: ServerFeatureAuthService) {}
 
