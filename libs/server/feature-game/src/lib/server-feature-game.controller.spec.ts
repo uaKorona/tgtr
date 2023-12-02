@@ -91,7 +91,9 @@ describe('ServerFeatureGameController', () => {
     // used in the endpoint's request!. `game.id` refers to the UUID
     // that is in the endpoint's URL, and the object parameter is the
     // PATCH payload of the request
-    const updated = await controller.update(mockUser.id, game.id, { playerDarkName });
+    const updated = await controller.update(mockUser.id, game.id, {
+      playerDarkName,
+    });
 
     // finally, ensure that the response includes the updated title
     expect(updated.playerDarkName).toBe(playerDarkName);
