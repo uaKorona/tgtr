@@ -59,7 +59,7 @@ describe('ServerFeatureGameController', () => {
 
     // call the method that is run when the GET request is made
     // and store the result
-    const res = await controller.getAll();
+    const res = await controller.getAll(mockUser.id);
 
     // finally, set our expectations for the above code:
     // - make sure the JSON payload returned by the controller
@@ -91,7 +91,9 @@ describe('ServerFeatureGameController', () => {
     // used in the endpoint's request!. `game.id` refers to the UUID
     // that is in the endpoint's URL, and the object parameter is the
     // PATCH payload of the request
-    const updated = await controller.update(game.id, { playerDarkName });
+    const updated = await controller.update(mockUser.id, game.id, {
+      playerDarkName,
+    });
 
     // finally, ensure that the response includes the updated title
     expect(updated.playerDarkName).toBe(playerDarkName);

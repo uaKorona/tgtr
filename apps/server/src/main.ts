@@ -13,6 +13,7 @@ import { ConfigService } from '@nestjs/config';
 const configSwagger = new DocumentBuilder()
   .setTitle(`Full Stack Game REST API`)
   .setVersion('1.0')
+  .addBearerAuth()
   .build();
 
 async function bootstrap() {
@@ -36,7 +37,7 @@ async function bootstrap() {
   // set up versioning
   app.enableVersioning({
     type: VersioningType.URI,
-    prefix: 'v1',
+    prefix: 'v',
   });
 
   // handle swagger

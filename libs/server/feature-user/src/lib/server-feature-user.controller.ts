@@ -1,11 +1,20 @@
-import { Body, Controller, Logger, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  NotFoundException,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
 import { ServerFeatureUserService } from './server-feature-user.service';
 import { CreateUserDto } from '@server/data-access';
 import { IPublicUserData } from '@shared/domain';
-import { ApiTags } from '@nestjs/swagger';
-import { SkipAuth } from '@server/util';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ReqUserId, SkipAuth } from '@server/util';
 
-@Controller({ path: 'users' })
+@Controller({ path: 'users', version: '1' })
 @ApiTags('Users')
 export class ServerFeatureUserController {
   private readonly logger = new Logger(ServerFeatureUserController.name);
@@ -30,5 +39,27 @@ export class ServerFeatureUserController {
       email,
       games: [],
     };
+  }
+
+  /**
+   * In the UserController the POST endpoint for creating
+   * a user should not require a token, however the routes
+   * that return user data should require one.
+   */
+  @Get(':id')
+  @ApiBearerAuth()
+  async getUser(
+    @ReqUserId() reqUserId: string,
+    @Param('id', ParseUUIDPipe) id: string
+  ): Promise<IPublicUserData> {
+    if (reqUserId !== id) {
+      throw new NotFoundException();
+    }
+
+    const { password, ...user } = await this.serverFeatureUserService.getOne(
+      id
+    );
+
+    return user;
   }
 }

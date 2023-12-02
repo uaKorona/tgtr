@@ -20,6 +20,9 @@ export class ServerFeatureAuthService {
     password: string
   ): Promise<IPublicUserData | null> {
     const user = await this.userService.getOneByEmail(email);
+    this.logger.debug(
+      `Founded User ${user.email} ${user.id} for password check`
+    );
 
     if (await bcrypt.compare(password, user.password)) {
       this.logger.debug(`User '${email}' authenticated successfully`);
@@ -27,6 +30,10 @@ export class ServerFeatureAuthService {
 
       return publicUserData;
     }
+
+    this.logger.debug(
+      `User '${email}' authentication failed: ${password}, ${user.password}`
+    );
     return null;
   }
 
@@ -35,6 +42,8 @@ export class ServerFeatureAuthService {
       email: user.email,
       sub: user.id,
     };
+    Logger.log(`generateAccessToken for: ${payload}}`);
+
     return {
       access_token: this.jwtService.sign(payload),
     };
