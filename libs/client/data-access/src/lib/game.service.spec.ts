@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiService } from './api.service';
+import { GameService } from './game.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { IGame } from '@shared/domain';
@@ -9,8 +9,8 @@ import { of } from 'rxjs';
 
 const mockUser = createMockUser();
 
-describe('ApiService', () => {
-  let service: ApiService;
+describe('GameService', () => {
+  let service: GameService;
   let http: HttpClient;
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('ApiService', () => {
       imports: [HttpClientTestingModule],
     });
     http = TestBed.inject(HttpClient);
-    service = TestBed.inject(ApiService);
+    service = TestBed.inject(GameService);
   });
 
   it('should be created', () => {

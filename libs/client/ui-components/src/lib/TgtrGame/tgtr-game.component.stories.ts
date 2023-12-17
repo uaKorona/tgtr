@@ -1,7 +1,15 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { TgtrGameComponent } from './tgtr-game.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { createMockGame } from '@shared/util-testing';
+import { randFirstName, randUuid } from '@ngneat/falso';
+
+const randGame = () => ({
+  id: randUuid(),
+  roads: {},
+  battlefields: {},
+  playerDarkName: randFirstName(),
+  playerLightName: randFirstName(),
+});
 
 export default {
   title: 'TgtrGameComponent',
@@ -26,6 +34,6 @@ export const Primary = {
     props: args,
   }),
   args: {
-    game: createMockGame(),
+    game: randGame(),
   },
 };

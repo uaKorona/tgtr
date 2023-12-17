@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '@client/data-access';
+import { GameService } from '@client/data-access';
 import { ICreateGame, IGame } from '@shared/domain';
 import { TgtrGameComponent } from '@client/ui-components';
 import { BehaviorSubject, take } from 'rxjs';
@@ -20,7 +20,7 @@ import { BehaviorSubject, take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureGameComponent implements OnInit {
-  private readonly apiService = inject(ApiService);
+  private readonly apiService = inject(GameService);
 
   games$ = new BehaviorSubject<IGame[]>([]);
 
