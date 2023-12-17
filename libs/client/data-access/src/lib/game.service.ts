@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ICreateGame, IGame } from '@shared/domain';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class GameService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = '/api/games';
+  private readonly baseUrl = '/api/v1/games';
   private readonly baseUrlById = (id: string) => `${this.baseUrl}/${id}`;
 
   getAllGames(): Observable<IGame[]> {

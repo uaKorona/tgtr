@@ -1,0 +1,41 @@
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-block-end: $space-sm;
+
+  label,
+  .label {
+    display: block;
+    margin-block-end: $space-x-sm;
+    font-weight: bold;
+  }
+
+  // 'invalid' is conditionally added to input groups so that
+  // child elements can have matching styles
+  &--invalid {
+    color: $nord11;
+
+    label,
+    .label {
+      color: $nord11;
+    }
+  }
+
+  // new class with modifiers, hidden by default
+  .validation-text {
+    font-size: 0.65rem;
+    display: none;
+
+    &--visible {
+      display: block;
+    }
+
+    &--error {
+      color: $nord11;
+    }
+
+    &--warning {
+      color: $nord13;
+    }
+  }
+}
