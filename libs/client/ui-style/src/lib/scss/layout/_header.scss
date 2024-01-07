@@ -6,6 +6,7 @@ header,
   background-color: $nord0;
   color: $color-text-inverse;
   height: $header-height;
+  align-items: center;
 
   &__application {
     display: flex;
@@ -33,6 +34,16 @@ header,
       padding: 0.9rem 1.2rem;
       text-decoration: none;
       opacity: 0.65;
+    }
+  }
+
+  &__actions {
+    flex-grow: 1;
+    text-align: right;
+    padding: 0 $space-default;
+
+    .user-email {
+      padding-right: $space-default;
     }
   }
 }

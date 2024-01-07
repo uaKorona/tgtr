@@ -1,15 +1,13 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameService } from '@client/data-access';
-import { ICreateGame, IGame } from '@shared/domain';
+import { GameFacade } from '@client/data-access';
+import { IGame } from '@shared/domain';
 import { TgtrGameComponent } from '@client/ui-components';
-import { BehaviorSubject, take } from 'rxjs';
 
 @Component({
   selector: 'tgtr-feature-game',
@@ -20,9 +18,10 @@ import { BehaviorSubject, take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureGameComponent implements OnInit {
-  private readonly apiService = inject(GameService);
+  //private readonly apiService = inject(GameService);
+  private readonly gameFacade = inject(GameFacade);
 
-  games$ = new BehaviorSubject<IGame[]>([]);
+  games$ = this.gameFacade.games$;
 
   trackTodo(index: number, game: IGame): string {
     return game.id;
@@ -33,28 +32,14 @@ export class FeatureGameComponent implements OnInit {
   }
 
   addGame(): void {
-    const game: ICreateGame = {
-      playerLightName: 'Player ' + Date.now(),
-      playerDarkName: 'Player ' + Date.now(),
-    };
-
-    this.apiService.createGame(game).subscribe(() => {
-      this.refreshGames();
-    });
+    this.gameFacade.addGame();
   }
 
   deleteGame(id: string): void {
-    this.apiService.deleteGame(id).subscribe(() => {
-      this.refreshGames();
-    });
+    this.gameFacade.deleteGame(id);
   }
 
   private refreshGames(): void {
-    this.apiService
-      .getAllGames()
-      .pipe(take(1))
-      .subscribe((games) => {
-        this.games$.next(games);
-      });
+    this.gameFacade.loadGames();
   }
 }

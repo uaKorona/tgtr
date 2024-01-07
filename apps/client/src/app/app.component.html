@@ -9,7 +9,9 @@
         <div class="header__actions">
             <ng-container *ngIf="user$ | async as user; else login">
                 <span class="nav-link user-email">Hello, {{ user.email }}!</span>
-                <span class="nav-link" (click)="logout()">Log Out</span>
+                <span class="nav-link" (click)="logout()">
+                    <a href="#" class="nav-link">Log Out</a>
+                </span>
             </ng-container>
             <ng-template #login>
                 <a href="#" class="nav-link" [routerLink]="['/register']">Sign Up</a>
