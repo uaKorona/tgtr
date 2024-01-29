@@ -15,23 +15,23 @@ export class GameService {
     return this.http.get<IGame[]>(this.baseUrl);
   }
 
-  getGameById(todoId: string): Observable<IGame> {
-    return this.http.get<IGame>(this.baseUrlById(todoId));
+  getGameById(gameId: string): Observable<IGame> {
+    return this.http.get<IGame>(this.baseUrlById(gameId));
   }
 
   createGame(game: ICreateGame): Observable<IGame> {
     return this.http.post<IGame>(this.baseUrl, game);
   }
 
-  updateGame(todoId: string, todoData: unknown): Observable<IGame> {
-    return this.http.patch<IGame>(this.baseUrlById(todoId), todoData);
+  updateGame(gameId: string, gameData: unknown): Observable<IGame> {
+    return this.http.patch<IGame>(this.baseUrlById(gameId), gameData);
   }
 
-  createOrUpdateGame(todoId: string, todoData: unknown): Observable<IGame> {
-    return this.http.put<IGame>(this.baseUrlById(todoId), todoData);
+  createOrUpdateGame(gameId: string, gameData: unknown): Observable<IGame> {
+    return this.http.put<IGame>(this.baseUrlById(gameId), gameData);
   }
 
-  deleteGame(todoId: string): Observable<never> {
-    return this.http.delete<never>(this.baseUrlById(todoId));
+  deleteGame(gameId: string): Observable<never> {
+    return this.http.delete<never>(this.baseUrlById(gameId));
   }
 }
